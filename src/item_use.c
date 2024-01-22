@@ -193,13 +193,6 @@ void ItemUseOutOfBattle_Mail(u8 taskId)
     Task_FadeAndCloseBagMenu(taskId);
 }
 
-static bool8 CanDisguiseRideBike()
-{
-    if (gSaveBlock2Ptr->playerDisguise.enabled && !gSaveBlock2Ptr->playerDisguise.canRideBike)
-        return FALSE;
-    return TRUE;
-}
-
 void ItemUseOutOfBattle_Bike(u8 taskId)
 {
     s16 *data = gTasks[taskId].data;
@@ -212,7 +205,7 @@ void ItemUseOutOfBattle_Bike(u8 taskId)
         DisplayCannotDismountBikeMessage(taskId, tUsingRegisteredKeyItem);
     else
     {
-        if (Overworld_IsBikingAllowed() == TRUE && IsBikingDisallowedByPlayer() == 0 && CanDisguiseRideBike())
+        if (Overworld_IsBikingAllowed() == TRUE && IsBikingDisallowedByPlayer() == 0)
         {
             sItemUseOnFieldCB = ItemUseOnFieldCB_Bike;
             SetUpItemUseOnFieldCallback(taskId);
@@ -263,16 +256,9 @@ static bool32 CanFish(void)
     return FALSE;
 }
 
-static bool8 CanDisguiseFish()
-{
-    if (gSaveBlock2Ptr->playerDisguise.enabled && !gSaveBlock2Ptr->playerDisguise.canFish)
-        return FALSE;
-    return TRUE;
-}
-
 void ItemUseOutOfBattle_Rod(u8 taskId)
 {
-    if (CanFish() && CanDisguiseFish())
+    if (CanFish() == TRUE)
     {
         sItemUseOnFieldCB = ItemUseOnFieldCB_Rod;
         SetUpItemUseOnFieldCallback(taskId);
@@ -711,21 +697,14 @@ static void ItemUseOnFieldCB_Berry(u8 taskId)
     DestroyTask(taskId);
 }
 
-static bool8 CanDisguiseIrrigate()
-{
-    if (gSaveBlock2Ptr->playerDisguise.enabled && !gSaveBlock2Ptr->playerDisguise.canIrrigate)
-        return FALSE;
-    return TRUE;
-}
-
 void ItemUseOutOfBattle_WailmerPail(u8 taskId)
 {
-    if (TryToWaterSudowoodo() && CanDisguiseIrrigate())
+    if (TryToWaterSudowoodo() == TRUE)
     {
         sItemUseOnFieldCB = ItemUseOnFieldCB_WailmerPailSudowoodo;
         SetUpItemUseOnFieldCallback(taskId);
     }
-    else if (TryToWaterBerryTree() && CanDisguiseIrrigate())
+    else if (TryToWaterBerryTree() == TRUE)
     {
         sItemUseOnFieldCB = ItemUseOnFieldCB_WailmerPailBerry;
         SetUpItemUseOnFieldCallback(taskId);
