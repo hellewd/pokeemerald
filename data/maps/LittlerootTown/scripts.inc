@@ -248,10 +248,26 @@ LittlerootTown_EventScript_SetRivalBirchPosForDexUpgradeFemale::
 
 LittlerootTown_EventScript_FatMan::
 	msgbox LittlerootTown_Text_CanUsePCToStoreItems, MSGBOX_NPC
+	clearflag 0x023
+	clearflag 0x022
+	setflag 0x021
+	callnative LoadSamuelPreview
 	end
 
 LittlerootTown_EventScript_Boy::
 	msgbox LittlerootTown_Text_BirchSpendsDaysInLab, MSGBOX_NPC
+	clearflag 0x023
+	clearflag 0x021
+	setflag 0x022
+	callnative LoadRowanPreview
+	end
+
+LittlerootTown_EventScript_TownSign::
+	msgbox LittlerootTown_Text_TownSign, MSGBOX_SIGN
+	clearflag 0x021
+	clearflag 0x022
+	setflag 0x023
+	callnative LoadSophiaPreview
 	end
 
 LittlerootTown_EventScript_Twin::
@@ -390,10 +406,6 @@ LittlerootTown_EventScript_GoSaveBirchTrigger::
 	waitmovement 0
 	setvar VAR_LITTLEROOT_TOWN_STATE, 2
 	releaseall
-	end
-
-LittlerootTown_EventScript_TownSign::
-	msgbox LittlerootTown_Text_TownSign, MSGBOX_SIGN
 	end
 
 LittlerootTown_EventScript_BirchsLabSign::

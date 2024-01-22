@@ -2160,6 +2160,8 @@ static void InitObjectEventsLink(void)
     TryRunOnWarpIntoMapScript();
 }
 
+#include "player_preview.h"
+
 static void InitObjectEventsLocal(void)
 {
     u16 x, y;
@@ -2174,6 +2176,9 @@ static void InitObjectEventsLocal(void)
     SetPlayerAvatarTransitionFlags(player->transitionFlags);
     ResetInitialPlayerAvatarState();
     TrySpawnObjectEvents(0, 0);
+    LoadSamuelPreview();
+    LoadRowanPreview();
+    LoadSophiaPreview();
     TryRunOnWarpIntoMapScript();
 }
 
@@ -2181,6 +2186,9 @@ static void InitObjectEventsReturnToField(void)
 {
     SpawnObjectEventsOnReturnToField(0, 0);
     RotatingGate_InitPuzzleAndGraphics();
+    LoadSamuelPreview();
+    LoadRowanPreview();
+    LoadSophiaPreview();
     RunOnReturnToFieldMapScript();
 }
 
