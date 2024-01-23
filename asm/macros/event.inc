@@ -1729,6 +1729,20 @@
 	.2byte \quantity
 	.endm
 
+    .macro setdisguise id:req, canrun=0, canridebike=0, cansurf=0, canfish=0, canirrigate=0
+    .byte 0xe3
+    .2byte \id
+    .byte \canrun
+    .byte \canridebike
+    .byte \cansurf
+    .byte \canfish
+    .byte \canirrigate
+    .endm
+
+    .macro cleardisguise
+    .byte 0xe4
+    .endm
+
 
 @ Supplementary
 
