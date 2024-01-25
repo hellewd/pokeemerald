@@ -226,6 +226,9 @@ static void Task_WeatherInit(u8 taskId)
 
 static void Task_WeatherMain(u8 taskId)
 {
+    
+    u8 i;
+
     if (gWeatherPtr->currWeather != gWeatherPtr->nextWeather)
     {
         if (!sWeatherFuncs[gWeatherPtr->currWeather].finish()
@@ -237,6 +240,9 @@ static void Task_WeatherMain(u8 taskId)
             gWeatherPtr->palProcessingState = WEATHER_PAL_STATE_CHANGING_WEATHER;
             gWeatherPtr->currWeather = gWeatherPtr->nextWeather;
             gWeatherPtr->weatherChangeComplete = TRUE;
+            for (i = 0; i < ARRAY_COUNT(gObjectEvents); i++) {
+                (&gObjectEvents[i])->triggerGroundEffectsOnMove = TRUE;
+            }
         }
     }
     else
