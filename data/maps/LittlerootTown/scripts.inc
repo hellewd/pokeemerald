@@ -249,12 +249,12 @@ LittlerootTown_EventScript_SetRivalBirchPosForDexUpgradeFemale::
 LittlerootTown_EventScript_FatMan::
 	msgbox LittlerootTown_Text_CanUsePCToStoreItems, MSGBOX_NPC
 	waitmessage
-	warp MAP_LITTLEROOT_TOWN, 9, 10
 	clearflag 0x023
 	clearflag 0x022
 	setflag 0x021
 	setdisguise 0x0
 	callnative LoadSamuelPreview
+	warpsilent MAP_LITTLEROOT_TOWN, 9, 10
 	end
 
 LittlerootTown_EventScript_Boy::
@@ -1039,4 +1039,3 @@ LittlerootTown_Text_BirchSomethingToShowYouAtLab:
 	.string "I gave you?\p"
 	.string "I have something to show you.\n"
 	.string "Let's go to my LAB.$"
-
